@@ -25,3 +25,8 @@ export interface ArtObject {
   accessionNumber?: string;
   objectURL?: string;
 }
+
+export interface Department {
+  departmentId: number;
+  displayName: string;
+}

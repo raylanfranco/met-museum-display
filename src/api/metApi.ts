@@ -6,8 +6,14 @@ export async function fetchDepartments() {
   return res.json();
 }
 
-export async function searchObjects(query: string) {
-  const res = await fetch(`${BASE_URL}/search?q=${query}`);
+export async function searchObjects(query: string, departmentId?: number) {
+  const url = new URL(`${BASE_URL}/search`);
+  url.searchParams.set("q", query);
+  if (departmentId) {
+    url.searchParams.set("departmentId", departmentId.toString());
+  }
+
+  const res = await fetch(url.toString());
   if (!res.ok) throw new Error("Failed to search objects");
   return res.json();
 }
